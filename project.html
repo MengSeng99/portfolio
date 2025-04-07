@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Louis</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        .icon-container {
+            position: fixed;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 100px;
+            z-index: 1;
+            transition: filter 0.3s;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            border: none;
+            transition: transform 0.3s;
+            margin: 5px;
+            cursor: pointer;
+            filter: brightness(50%);
+        }
+
+        .dark {
+            position: absolute;
+            width: 42px;
+            height: 42px;
+            background-color: #e5eaee;
+            opacity: 0%;
+            border-radius: 50%;
+            z-index: -1;
+            transition: opacity 0.3s, ease-in-out 0.3s;
+        }
+
+        .icon-container.selected .dark {
+            transform: translateY(8%);
+            opacity: 100%;
+        }
+
+        .icon.selected {
+            transform: scale(1.2);
+            filter: brightness(120%);
+        }
+
+        .project-content {
+            background: linear-gradient(#fff,#fff, #437FC7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 102vh; 
+            margin: 0; 
+        }
+
+        .laptop-container {
+            position: fixed;
+            top:30%;
+        }
+
+        .laptop {
+            width: 1160px;
+            height: 520px;
+            z-index: 1;
+        }
+
+        .screen {
+            position: absolute;
+            top: 13px;
+            left: 207px;
+            width: 765px;
+            height: 387.9px;
+            overflow: hidden;
+        }
+
+        .screen-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 18px 18px 10px 10px;
+        }
+
+        .prev-button {
+            position: absolute;
+            top: 30%;
+            left: 100px;
+            width:80px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            filter: brightness(30%);
+        }
+
+        .next-button {
+            position: absolute;
+            top: 30%;
+            right: 82px;
+            width:80px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            filter: brightness(30%);
+        }
+
+        .prev-button:hover {
+            filter: brightness(110%);
+            background-color: #d8dee3;
+            border-radius: 30%;
+        }
+
+        .next-button:hover {
+            filter: brightness(110%);
+            background-color: #d8dee3;
+            border-radius: 30%;
+        }
+
+        .title {
+            position: fixed;
+            top: 10px;
+        }
+
+        .title h2 {
+            font-size: 100px;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .title:hover h2 {
+            color: transparent;
+            cursor:-webkit-grabbing;
+        }
+
+        .android {
+            width: 250px;
+        }
+
+        .hiding-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mobile-container {
+            display: none;
+            position: fixed;
+            top:28%;
+            z-index: 2;
+        }
+
+        .tablet-container {
+            display: none;
+            position: fixed;
+            top:30%;
+            z-index: 2;
+        }
+
+        .uiux_tablet {
+            width: 704px;
+            height: 467px;
+        }
+
+        .screen-tablet {
+            position: absolute;
+            left:65.3px;
+            bottom: 30px;
+            width: 576px;
+            height: 409.6px;
+            overflow: hidden;
+        }
+        .figma-container {
+            display: none;
+            position: fixed;
+            top: 25%;
+            z-index: 2;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            animation-duration: 1s;
+        }
+
+
+        @keyframes slide-up-top {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-150%);
+            }
+        }
+
+        @keyframes slide-up-center {
+            from {
+                transform: translateY(150%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slide-down-top {
+            from {
+                transform: translateY(-150%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slide-down-center {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(150%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay" id="overlay">
+        <div class="spinner"></div>
+    </div>
+    <nav class="top-nav" id="topNav">
+        <div class="container">
+            <div class="left">
+                <a onclick="navigateTo('index.html')" class="home-link" onmouseenter="hoverHome(true)" onmouseleave="hoverHome(false)">Louis</a>
+            </div>
+            <div class="right">
+                <a onclick="navigateTo('skills.html')">Skills</a>
+                <a class="sep">|</a>
+                <a href="project.html">Project</a>
+            </div>
+        </div>
+    </nav>
+    <div class="project-content">
+        <div class="icon-container" id="iconContainer">
+            <div class='dark'></div>
+            <img src="assets/webdev_icon.png" class="icon" alt="Web Dev" onclick="selectIcon(this)">
+            <img src="assets/mobiledev_icon.png" class="icon" alt="Mobile Dev" onclick="selectIcon(this)">
+            <img src="assets/ui_icon.png" class="icon" alt="UIUX Design" onclick="selectIcon(this)">
+            <img src="assets/Figma.png" class="icon" alt="Figma Portfolio" onclick="selectIcon(this)">
+        </div>
+        <div class="title">
+            <h2>JUNIOR GENIUS HUB</h2>
+        </div>
+        <div class="laptop-container">
+            <img src="assets/laptop.png" class="laptop" alt="Laptop">
+            <div class="screen">
+                <img src="assets/web/1.jpeg" class="screen-image" alt="Image 1">
+            </div>
+            <button class="prev-button" onclick="prevImage()"><img src="assets/arrowLeft.png" alt="Previous"></button>
+            <button class="next-button" onclick="nextImage()"><img src="assets/arrowRight.png" alt="Next"></button>
+        </div>
+        <div class="hiding-content">
+            <div class="mobile-container">
+                <button style="left:-100px; top:40%" class="prev-button" onclick="prevMobileImage()"><img src="assets/arrowLeft.png" alt="Previous"></button>
+                <img src="assets/mobile/apfood/1.png" class="android" alt="APFood" id="mobileImage">
+                <button style="right:-100px; top:40%" class="next-button" onclick="nextMobileImage()"><img src="assets/arrowRight.png" alt="Next"></button>
+            </div>
+        </div>
+        <div class="hiding-content">
+            <div class="tablet-container">
+                <button style="left:-100px; top:40%" class="prev-button" onclick="prevTabletImage()"><img src="assets/arrowLeft.png" alt="Previous"></button>
+                <img src="assets/tablet.png" class="uiux_tablet" alt="ytoday">
+                <div class="screen-tablet">
+                    <img src="assets/uiux/yt/1.png" class="screen-image-tablet"  id="tabletImage" alt="Image 1">
+                </div>
+                <button style="right:-100px; top:40%" class="next-button" onclick="nextTabletImage()"><img src="assets/arrowRight.png" alt="Next"></button>
+            </div>
+        </div>
+        <div class="hiding-content">
+            <div class="figma-container" id="figmaContainer">
+                <button style="left:-100px; top:40%" class="prev-button" disabled><img src="assets/arrowLeft.png" alt="Previous"></button>
+                <iframe style="border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 10px;"
+                    width="800" height="450"
+                    src="https://embed.figma.com/proto/396Ljun37RnLvlUZVzR5mj/Louis?node-id=349-483&p=f&scaling=min-zoom&content-scaling=fixed&page-id=301%3A2&starting-point-node-id=349%3A483&embed-host=share"
+                    allowfullscreen>
+                </iframe>
+                <button style="right:-100px; top:40%" class="next-button" disabled><img src="assets/arrowRight.png" alt="Next"></button>
+            </div>
+        </div>        
+    </div>
+    
+    <script>
+       let isMobileDevSelected = false;
+       let isTabletDevSelected = false;
+       let isWebDevSelected = true;
+       let isFigmaSelected = false;
+
+        
+        function selectIcon(icon) {
+            const icons = document.querySelectorAll('.icon');
+            icons.forEach((icon) => {
+                icon.classList.remove('selected');
+            });
+            icon.classList.add('selected');
+            document.getElementById('iconContainer').classList.add('selected');
+            const iconContainer = document.getElementById('iconContainer');
+            const darkElement = iconContainer.querySelector('.dark');
+            darkElement.style.top = `${icon.offsetTop}px`;
+        
+            const laptopContainer = document.querySelector('.laptop-container');
+            const mobileContainer = document.querySelector('.mobile-container');
+            const tabletContainer = document.querySelector('.tablet-container');
+            const figmaContainer = document.getElementById('figmaContainer');
+        
+            if (icon.alt === 'Mobile Dev') {
+                if (!isMobileDevSelected && isWebDevSelected) {
+                    laptopContainer.style.animation = 'slide-up-top 1s forwards';
+                    mobileContainer.style.display = 'flex';
+                    mobileContainer.style.animation = 'slide-up-center 1s forwards';
+                    tabletContainer.style.animation = 'slide-down-center 1s forwards';
+                    isMobileDevSelected = true;
+                    isTabletDevSelected = false;
+                    isWebDevSelected = false;
+                    document.querySelector('.title h2').textContent = 'APFOOD'; 
+                }
+                else if (!isMobileDevSelected && isTabletDevSelected){
+                    mobileContainer.style.display = 'flex';
+                    mobileContainer.style.animation = 'slide-down-top 1s forwards';
+                    tabletContainer.style.animation = 'slide-down-center 1s forwards';
+                    isTabletDevSelected = false;
+                    isMobileDevSelected = true;
+                    isWebDevSelected = false;
+                    document.querySelector('.title h2').textContent = 'APFOOD';
+                }
+            } else if (icon.alt === 'Web Dev') {
+                if (isMobileDevSelected) {
+                    laptopContainer.style.animation = 'slide-down-top 1s forwards';
+                    mobileContainer.style.animation = 'slide-down-center 1s forwards';
+                    isMobileDevSelected = false;
+                    isWebDevSelected = true;
+                    isTabletDevSelected = false;
+                    document.querySelector('.title h2').textContent = 'JUNIOR GENIUS HUB';
+                }
+                else if(!isMobileDevSelected && isTabletDevSelected) {
+                    tabletContainer.style.animation = 'slide-down-center 1s forwards';
+                    laptopContainer.style.animation = 'slide-down-top 1s forwards';
+                    isMobileDevSelected = false;
+                    isWebDevSelected = true;
+                    isTabletDevSelected = false;
+                    document.querySelector('.title h2').textContent = 'JUNIOR GENIUS HUB';
+                }
+            } 
+            else if (icon.alt === 'UIUX Design') {
+                if (isMobileDevSelected) {
+                    mobileContainer.style.animation = 'slide-up-top 1s forwards';
+                    tabletContainer.style.display = 'flex';
+                    tabletContainer.style.animation = 'slide-up-center 1s forwards';
+                    isMobileDevSelected = false;
+                    isTabletDevSelected = true;
+                    isWebDevSelected = false;
+                    document.querySelector('.title h2').textContent = 'YTODAY USER PANEL';
+                }
+                else if(!isMobileDevSelected) {
+                    tabletContainer.style.display = 'flex';
+                    tabletContainer.style.animation = 'slide-up-center 1s forwards';
+                    laptopContainer.style.animation = 'slide-up-top 1s forwards';
+                    isMobileDevSelected = false;
+                    isTabletDevSelected = true;
+                    isWebDevSelected = false;
+                    document.querySelector('.title h2').textContent = 'YTODAY USER PANEL';
+                }
+            }
+            else if (icon.alt === 'Figma Portfolio') {
+                if (!isFigmaSelected) {
+                    if (isWebDevSelected) laptopContainer.style.animation = 'slide-up-top 1s forwards';
+                    if (isMobileDevSelected) mobileContainer.style.animation = 'slide-up-top 1s forwards';
+                    if (isTabletDevSelected) tabletContainer.style.animation = 'slide-up-top 1s forwards';
+
+                    figmaContainer.style.display = 'flex';
+                    figmaContainer.style.animation = 'slide-up-center 1s forwards';
+
+                    isWebDevSelected = false;
+                    isMobileDevSelected = false;
+                    isTabletDevSelected = false;
+                    isFigmaSelected = true;
+
+                    document.querySelector('.title h2').textContent = 'FIGMA PROTOTYPE';
+                }
+            }
+            else {
+                figmaContainer.style.display = 'none';
+                isFigmaSelected = false;
+            }
+            const overlay = document.getElementById('overlay');
+        }
+
+        const mobileImages = [];
+        const mobileImageDirectory = "assets/mobile/apfood/";
+        let currentMobileImageIndex = 1;
+        const mobileImage = document.getElementById('mobileImage');
+
+        // Fetch all images from the "assets/mobile/apfood" directory
+        fetchMobileImages();
+
+        function fetchMobileImages() {
+            mobileImages.length = 0; 
+            for (let i = 1; i <= 9; i++) { 
+                mobileImages.push(`${mobileImageDirectory}${i}.png`);
+            }
+        }
+
+        function prevMobileImage() {
+            currentMobileImageIndex = (currentMobileImageIndex - 1 + mobileImages.length) % mobileImages.length;
+            mobileImage.src = mobileImages[currentMobileImageIndex];
+        }
+
+        function nextMobileImage() {
+            currentMobileImageIndex = (currentMobileImageIndex + 1) % mobileImages.length;
+            mobileImage.src = mobileImages[currentMobileImageIndex];
+        }
+
+        const tabletImages = [];
+        const tabletImageDirectory = "assets/uiux/yt/";
+        let currentTabletImageIndex = 1;
+        const tabletImage = document.getElementById('tabletImage');
+
+        fetchTabletImages();
+
+        function fetchTabletImages() {
+            tabletImages.length = 0; 
+            for (let i = 1; i <= 11; i++) { 
+                tabletImages.push(`${tabletImageDirectory}${i}.png`);
+            }
+        }
+
+        function prevTabletImage() {
+            currentTabletImageIndex = (currentTabletImageIndex - 1 + tabletImages.length) % tabletImages.length;
+            tabletImage.src = tabletImages[currentTabletImageIndex];
+        }
+
+        function nextTabletImage() {
+            currentTabletImageIndex = (currentTabletImageIndex + 1) % tabletImages.length;
+            tabletImage.src = tabletImages[currentTabletImageIndex];
+        }
+
+        const images = [];
+            const imageDirectory = "assets/web/";
+            let currentImageIndex = 0;
+            const screenImage = document.querySelector('.screen-image');
+
+            // Fetch all images from the "assets/web" directory
+            fetchImages();
+
+            function fetchImages() {
+                images.length = 0; // Clear the images array
+                for (let i = 1; i <= 10; i++) { 
+                    images.push(`${imageDirectory}${i}.jpeg`);
+                }
+            }
+
+            function prevImage() {
+                currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+                screenImage.src = images[currentImageIndex];
+            }
+
+            function nextImage() {
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                screenImage.src = images[currentImageIndex];
+            }
+
+        document.querySelector('.title').addEventListener('mousemove', function(e) {
+            const title = document.querySelector('.title');
+            const h2 = title.querySelector('h2');
+            const boundingRect = title.getBoundingClientRect();
+            
+            // Get the colors used in the linear gradient
+            const gradientColors = ['#437FC7', '#9d43c7', '#cf23cf'];
+            
+            // Calculate cursor position relative to the title element
+            const x = e.clientX - boundingRect.left;
+            const y = e.clientY - boundingRect.top;
+            
+            // Calculate the percentage of cursor position relative to the title element
+            const xPercent = (x / boundingRect.width) * 100;
+            const yPercent = (y / boundingRect.height) * 100;
+            
+            // Determine the color stop based on the cursor position
+            const colorStop = Math.floor((x / boundingRect.width) * gradientColors.length);
+            
+            // Get the color at the determined color stop
+            const color = gradientColors[colorStop];
+            
+            // Set the text color based on the determined color
+            h2.style.color = color || '#333'; // Use the determined color or default to #333
+        });
+    </script>
+</body>
+</html>

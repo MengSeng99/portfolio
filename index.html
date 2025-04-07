@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Louis</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="overlay" id="overlay">
+        <div class="spinner"></div>
+    </div>
+    <nav class="top-nav" id="topNav">
+        <div class="container">
+            <div class="left">
+                <a href="index.html" class="home-link" onmouseenter="hoverHome(true)" onmouseleave="hoverHome(false)">Louis</a>
+            </div>
+            <div class="right">
+                <a onclick="navigateTo('skills.html')">Skills</a>
+                <a class="sep">|</a>
+                <a onclick="navigateTo('project.html')">Project</a>
+            </div>
+        </div>
+    </nav>    
+    <div class="content">
+        <div class="left-content">
+            <img src="assets/work.png" alt="Work Image">
+        </div>
+        <div class="right-content">
+            <h3>Hey! I'm <span class="blue-text">Louis</span></h3>
+            <h1>A Software Developer</h1>
+            <div class="separator"></div>
+            <p>I possess a strong foundation in software development and a deep understanding of programming languages, software methodologies, and database systems. A dedicated problem-solver with a keen ability to thrive in collaborative team environments.</p>
+            <div class="button-and-contacts">
+                <button class="view-work" onclick="viewWork()">View My Work</button>
+                <div class="contact">
+                    <a href="mailto:louiskoh3010@gmail.com">
+                        <img src="assets/Mail.png" alt="Email">
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=01126677787">
+                        <img src="assets/Whatsapp.png" alt="Whatsapp">
+                    </a>
+                    <a href="https://github.com/MengSeng99">
+                        <img src="assets/Github.png" alt="Github">
+                    </a>
+                    <a href="https://www.linkedin.com/in/meng-seng-koh-4043a628a/">
+                        <img src="assets/Linkedin.png" alt="Linkedin">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="education-card">
+        <div class="title">
+            <h2>Education Level</h2>
+        </div>
+        <div class="cards-container">
+            <div class="card">
+                <img src="assets/smksp.png" alt="SMKSP Logo">
+                <div class="details">
+                    <h2>Sijil Pelajaran Malaysia (SPM)</h2>
+                    <p>2015 - 2019</p>
+                    <p>Results: 7A2B</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="assets/apu.jpg" alt="APU Logo">
+                <div class="details">
+                    <h2>Diploma in Software Engineering (SE)</h2>
+                    <p>2020 - 2022</p>
+                    <p>CGPA: 3.53/4</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="assets/apu.jpg" alt="APU Logo">
+                <div class="details">
+                    <h2>Degree in Mobile Technology (MBT)</h2>
+                    <p>2023 - 2025</p>
+                    <p>CGPA: 3.67/4</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="experiences">
+        <div class="title">
+            <h2>Experiences</h2>
+        </div>
+        <div class="card__container">
+            <article class="card__article">
+                <img src="assets/cis.jpg" alt="CIS" class="card__img">
+                <div class="card__data">
+                    <span class="card__description">Confianza IT Solution</span>
+                    <h2 class="card__title">Network Consultant</h2>
+                    <ol class="card__description">
+                        <li>Consulted clients on network-related issues and provided expert solutions.</li>
+                        <li>Proposed optimised network solutions to enhance performance and security.</li>
+                        <li>Engaged with clients to understand their needs and deliver effective recommendations.</li>
+                    </ol>
+                    <a href="#" class="card__button">Read More</a>
+                </div>
+            </article>
+        
+            <article class="card__article">
+                <img src="assets/ytoday.jpg" alt="YouthsToday" class="card__img">
+                <div class="card__data">
+                    <span class="card__description">YouthsToday</span>
+                    <h2 class="card__title">IT & Project Marketing Executive (Intern)</h2>
+                    <ol class="card__description">
+                        <li>Designed user interfaces and prototypes to enhance company workflow.</li>
+                        <li>Improved operational efficiency by refining existing processes.</li>
+                    </ol>
+                    <a href="#" class="card__button">Read More</a>
+                </div>
+            </article>
+        
+            <article class="card__article">
+                <img src="assets/tn.jpg" alt="Tiong Nam Logistics Solutions" class="card__img">
+                <div class="card__data">
+                    <span class="card__description">Tiong Nam Logistics Solutions</span>
+                    <h2 class="card__title">Software Developer (Intern)</h2>
+                    <ol class="card__description">
+                        <li>Suggested ideas for software development to enhance efficiency.</li>
+                        <li>Developed solutions using Android applications, Python-based software, and web applications.</li>
+                        <li>Performed data analysis using Tableau to extract insights and support decision-making.</li>
+                    </ol>
+                    <a href="#" class="card__button">Read More</a>
+                </div>
+            </article>
+        </div>
+        
+    </div>
+    <div class="what_i_do" id="whatIDo">
+        <div class="title">
+            <h2>What I Do?</h2>
+        </div>
+            
+        <div class="content1">
+            <img src="assets/web_dev.png" alt="Web Application Development" class="animated-image">
+            <div class="description">
+                <h1>Web Application Development</h1>
+                <div class="separator"></div>
+                <p>Web Application Development with</p>
+                <div class="icon-container">
+                    <img src="assets/html.png" alt="HTML" class="icon">
+                    <img src="assets/css.png" alt="CSS" class="icon">
+                    <img src="assets/js.png" alt="JavaScript" class="icon">
+                    <img src="assets/php.png" alt="PHP" class="icon">
+                    <img src="assets/Aspnet.png" alt="PHP" class="icon">
+                </div>
+            </div>
+        </div>
+        
+        <div class="content2">
+            <div class="description">
+                <h1>Mobile App Development</h1>
+                <div class="separator"></div>
+                <p>Android/iOS App Development with</p>
+                <div class="icon-container">
+                    <img src="assets/as.png" alt="HTML" class="icon">
+                    <img src="assets/Swift.png" alt="CSS" class="icon">
+                </div>
+            </div>
+            <img src="assets/mobile.png" alt="Mobile App Development" class="mobile-img">
+        </div>
+    
+        <div class="content1">
+            <img src="assets/ui_ux.png" alt="UI/UX Design" class="animated-image">
+            <div class="description">
+                <h1>UI/UX Design</h1>
+                <div class="separator"></div>
+                <p>UI/UX Designing with</p>
+                <div class="icon-container">
+                    <img src="assets/Figma.png" alt="HTML" class="icon">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="top-btn">
+        <img id="scrollTopBtn" src="assets/top-btn.png" alt="Scroll to Top" class="top-btn" onclick="scrollToTop()">
+    </div>           
+</body>
+</html>

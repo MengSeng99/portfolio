@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Louis</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        .duck-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .duck-img {
+            max-width: 15%;
+            height: auto;
+            cursor: pointer; 
+        }
+
+        .move-left {
+            animation: slideLeft 5s forwards; 
+        }
+
+        .move-right {
+            animation: slideRight 5s forwards; /* Animation name, duration, and fill mode */
+        }
+
+        @keyframes slideRight {
+            from {
+                transform: translateX(1000%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideLeft {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-400%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay" id="overlay">
+        <div class="spinner"></div>
+    </div>
+    <nav class="top-nav" id="topNav">
+        <div class="container">
+            <div class="left">
+                <a onclick="navigateTo('index.html')" class="home-link" onmouseenter="hoverHome(true)" onmouseleave="hoverHome(false)">Louis</a>
+            </div>
+            <div class="right">
+                <a href="skills.html">Skills</a>
+                <a class="sep">|</a>
+                <a onclick="navigateTo('project.html')">Project</a>
+            </div>
+        </div>
+    </nav>
+    <div class="tech-skills">
+        <div class="title">
+            <h2>Technical Skills</h2>
+        </div>
+        <div class="skills-container">
+            <!-- Skills will be dynamically inserted here -->
+        </div>
+    </div>
+    <div class="title">
+        <h2>Soft Skills</h2>
+    </div>
+    <div class="duck-container">
+        <img src="assets/duck2.png" class="duck-img" id="duck2">
+        <img src="assets/duck.gif" class="duck-img" id="duckGif" style="display: none;">
+        <img src="assets/duck-shake.gif" class="duck-img" id="duckGif2" style="display: none; width:100px">
+        <img src="assets/psyduck.png" class="duck-img" id="duck2" style="display: none; height:100px">
+        <img src="assets/psyduck.png" class="duck-img" id="duck2" style="display: none; height:100px">
+    </div>
+    <div class="top-btn">
+        <img id="scrollTopBtn" src="assets/top-btn.png" alt="Scroll to Top" class="top-btn" onclick="scrollToTop()">
+    </div>      
+</body>
+<script>
+    document.getElementById('duck2').addEventListener('click', function() {
+        document.getElementById('duck2').style.display = 'none';
+        var duckGif = document.getElementById('duckGif');
+        duckGif.style.display = 'block';
+        duckGif.classList.add('move-left');
+
+        duckGif.addEventListener('animationend', function() {
+            var duckGif2 = document.getElementById('duckGif2');
+            duckGif.style.display = 'none';
+            duckGif2.style.display = 'block';
+            duckGif2.classList.add('move-right');
+        });
+    });
+</script>
+
+</html>
