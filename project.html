@@ -283,13 +283,11 @@
         </div>
         <div class="hiding-content">
             <div class="figma-container" id="figmaContainer">
-                <button style="left:-100px; top:40%" class="prev-button" disabled><img src="assets/arrowLeft.png" alt="Previous"></button>
                 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 10px;"
-                    width="800" height="450"
+                    width="70%" height="500"
                     src="https://embed.figma.com/proto/396Ljun37RnLvlUZVzR5mj/Louis?node-id=349-483&p=f&scaling=min-zoom&content-scaling=fixed&page-id=301%3A2&starting-point-node-id=349%3A483&embed-host=share"
                     allowfullscreen>
                 </iframe>
-                <button style="right:-100px; top:40%" class="next-button" disabled><img src="assets/arrowRight.png" alt="Next"></button>
             </div>
         </div>        
     </div>
@@ -376,7 +374,14 @@
                 }
             }
             else if (icon.alt === 'Figma Portfolio') {
-                if (!isFigmaSelected) {
+                if (isFigmaSelected && icon.alt !== 'Figma Portfolio') {
+                    figmaContainer.style.animation = 'slide-down-center 1s forwards';
+                    setTimeout(() => {
+                        figmaContainer.style.display = 'none';
+                    }, 1000);
+                    isFigmaSelected = false;
+                }
+                else if (!isFigmaSelected) {
                     if (isWebDevSelected) laptopContainer.style.animation = 'slide-up-top 1s forwards';
                     if (isMobileDevSelected) mobileContainer.style.animation = 'slide-up-top 1s forwards';
                     if (isTabletDevSelected) tabletContainer.style.animation = 'slide-up-top 1s forwards';

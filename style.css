@@ -515,6 +515,7 @@ img, video {
     padding: 8px;
     border: #154d63 2px solid;
     border-radius: 10px;
+    cursor: none;
 }
 
 .skill-bar {
@@ -563,7 +564,7 @@ img, video {
 
 .skill-icon:hover {
     transform: scale(1.2); 
-    cursor: pointer;
+    cursor:auto;
 }
 
 .skill-bar {
