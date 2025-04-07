@@ -564,7 +564,7 @@ img, video {
 
 .skill-icon:hover {
     transform: scale(1.2); 
-    cursor:auto;
+    cursor: context-menu;
 }
 
 .skill-bar {
