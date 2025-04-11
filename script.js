@@ -64,50 +64,66 @@ function navigateTo(url) {
 }
 
 const skillsData = [
-    { name: 'HTML', icon: 'assets/html.png', percentage: 92 },
-    { name: 'CSS', icon: 'assets/css.png', percentage: 95 },
-    { name: 'JavaScript', icon: 'assets/js.png', percentage: 85 },
-    { name: 'Php', icon: 'assets/php.png', percentage: 80 },
-    { name: 'ASP.Net', icon: 'assets/Aspnet.png', percentage: 85 },
-    { name: 'Java', icon: 'assets/Java.png', percentage: 90 },
-    { name: 'Python', icon: 'assets/Python.png', percentage: 90 },
-    { name: 'Android Studio', icon: 'assets/as.png', percentage: 90 },
-    { name: 'Flutter', icon: 'assets/flutter.png', percentage: 95 },
-    { name: 'SwiftUI', icon: 'assets/Swift.png', percentage: 80 },
-    { name: 'R Programming', icon: 'assets/r.png', percentage: 85 },
-    { name: 'Tableau', icon: 'assets/Tableau.png', percentage: 88 },
-    { name: 'Microsoft SQL', icon: 'assets/sql.png', percentage: 90 },
-    { name: 'Firebase', icon: 'assets/firebase.png', percentage: 90 },
-    { name: 'MS Office', icon: 'assets/office.png', percentage: 98 },
-    { name: 'Figma', icon: 'assets/Figma.png', percentage: 95 },
-    { name: 'Git', icon: 'assets/git.png', percentage: 90 },
-    // Add more skills data as needed
+    { name: 'HTML', icon: 'assets/html.png', percentage: 92, category: 'Web Development' },
+    { name: 'CSS', icon: 'assets/css.png', percentage: 95, category: 'Web Development' },
+    { name: 'JavaScript', icon: 'assets/js.png', percentage: 85, category: 'Web Development' },
+    { name: 'Php', icon: 'assets/php.png', percentage: 80, category: 'Web Development' },
+    { name: 'ASP.Net', icon: 'assets/Aspnet.png', percentage: 85, category: 'Web Development' },
+    { name: 'Java', icon: 'assets/Java.png', percentage: 90, category: 'Mobile Development' },
+    { name: 'Python', icon: 'assets/Python.png', percentage: 90, category: 'Data Analysis' },
+    { name: 'Android Studio', icon: 'assets/as.png', percentage: 90, category: 'Mobile Development' },
+    { name: 'Flutter', icon: 'assets/flutter.png', percentage: 95, category: 'Mobile Development' },
+    { name: 'SwiftUI', icon: 'assets/Swift.png', percentage: 80, category: 'Mobile Development' },
+    { name: 'R Programming', icon: 'assets/r.png', percentage: 85, category: 'Data Analysis' },
+    { name: 'Tableau', icon: 'assets/Tableau.png', percentage: 88, category: 'Data Analysis' },
+    { name: 'Microsoft SQL', icon: 'assets/sql.png', percentage: 90, category: 'Database Management' },
+    { name: 'Firebase', icon: 'assets/firebase.png', percentage: 90, category: 'Database Management' },
+    { name: 'MS Office', icon: 'assets/office.png', percentage: 98, category: 'Others' },
+    { name: 'Figma', icon: 'assets/Figma.png', percentage: 95, category: 'Others' },
+    { name: 'Git', icon: 'assets/git.png', percentage: 90, category: 'Others' },
 ];
 
-const skillsContainer = document.querySelector('.skills-container');
+function displaySkillsByCategory() {
+    const categories = [...new Set(skillsData.map(skill => skill.category))];
+    const skillsContainer = document.querySelector('.skills-container');
+    skillsContainer.innerHTML = ''; // Clear existing content
 
-skillsData.forEach(skill => {
-    const skillElement = document.createElement('div');
-    skillElement.classList.add('skill');
+    categories.forEach(category => {
+        // Create category title
+        const categoryTitle = document.createElement('h2');
+        categoryTitle.textContent = category;
+        categoryTitle.classList.add('category-title');
+        skillsContainer.appendChild(categoryTitle);
 
-    skillElement.innerHTML = `
-        <img src="${skill.icon}" alt="${skill.name} Icon" class="skill-icon">
-        <div class="skill-bar">
-            <div class="skill-fill" style="width: ${skill.percentage}%;"></div>
-            <div class="skill-percentage">${skill.percentage}%</div>
-            <div class="skill-name">${skill.name}</div>
-        </div>
-    `;
+        // Filter and display skills under this category
+        const categorySkills = skillsData.filter(skill => skill.category === category);
+        categorySkills.forEach(skill => {
+            const skillElement = document.createElement('div');
+            skillElement.classList.add('skill');
 
-    skillElement.addEventListener('mouseover', () => {
-        const skillName = skillElement.querySelector('.skill-name');
-        skillName.style.display = 'block';
+            skillElement.innerHTML = `
+                <img src="${skill.icon}" alt="${skill.name} Icon" class="skill-icon">
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width: ${skill.percentage}%;"></div>
+                    <div class="skill-percentage">${skill.percentage}%</div>
+                    <div class="skill-name">${skill.name}</div>
+                </div>
+            `;
+
+            skillElement.addEventListener('mouseover', () => {
+                const skillName = skillElement.querySelector('.skill-name');
+                skillName.style.display = 'block';
+            });
+
+            skillElement.addEventListener('mouseout', () => {
+                const skillName = skillElement.querySelector('.skill-name');
+                skillName.style.display = 'none';
+            });
+
+            skillsContainer.appendChild(skillElement);
+        });
     });
+}
 
-    skillElement.addEventListener('mouseout', () => {
-        const skillName = skillElement.querySelector('.skill-name');
-        skillName.style.display = 'none';
-    });
-
-    skillsContainer.appendChild(skillElement);
-});
+// Call the function to display skills by category
+displaySkillsByCategory();

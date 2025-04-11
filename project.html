@@ -26,6 +26,19 @@
             transition: filter 0.3s;
         }
 
+        @media (max-width: 768px) {
+            .icon-container {
+            position: fixed;
+            top: auto;
+            bottom: 10px;
+            right: 50%;
+            transform: translateX(50%);
+            flex-direction: row;
+            padding: 5px 10px;
+            border-radius: 50px;
+            }
+        }
+
         .icon {
             width: 24px;
             height: 24px;
@@ -48,7 +61,7 @@
         }
 
         .icon-container.selected .dark {
-            transform: translateY(8%);
+            transform: translateY(calc(var(--icon-offset, 0) + 8%));
             opacity: 100%;
         }
 
@@ -56,6 +69,13 @@
             transform: scale(1.2);
             filter: brightness(120%);
         }
+
+        @media (max-width: 768px) {
+        .icon-container.selected .dark {
+            opacity: 0%;
+        }
+    }
+
 
         .project-content {
             background: linear-gradient(#fff,#fff, #437FC7);
@@ -93,11 +113,33 @@
             border-radius: 18px 18px 10px 10px;
         }
 
+        @media (max-width: 768px) {
+            .laptop {
+            width: 100%;
+            height: auto;
+            }
+
+            .screen {
+            top: 40%;
+            left: 51%;
+            width: 65%;
+            height: auto;
+            transform: translate(-50%, -50%);
+            }
+
+            .screen-image {
+            border-radius: 10px;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            }
+        }
+
         .prev-button {
             position: absolute;
             top: 30%;
-            left: 100px;
-            width:80px;
+            left: 50px;
+            width: 50px;
             background: none;
             border: none;
             cursor: pointer;
@@ -107,12 +149,24 @@
         .next-button {
             position: absolute;
             top: 30%;
-            right: 82px;
-            width:80px;
+            right: 50px;
+            width: 50px;
             background: none;
             border: none;
             cursor: pointer;
             filter: brightness(30%);
+        }
+
+        @media (max-width: 768px) {
+            .prev-button {
+            left: 20px;
+            width: 80px;
+            }
+
+            .next-button {
+            right: 20px;
+            width: 80px;
+            }
         }
 
         .prev-button:hover {
@@ -129,11 +183,14 @@
 
         .title {
             position: fixed;
-            top: 10px;
+            top: 1%;
+            @media (max-width: 768px) {
+                top: 10%;
+            }
         }
 
         .title h2 {
-            font-size: 100px;
+            font-size: calc(5vw + 20px);
             color: #333;
             transition: color 0.3s ease;
         }
@@ -160,10 +217,16 @@
             z-index: 2;
         }
 
+        @media (max-width: 768px) {
+            .mobile-container {
+            width: 200px;
+            }
+        }
+
         .tablet-container {
             display: none;
             position: fixed;
-            top:30%;
+            top: 30%;
             z-index: 2;
         }
 
@@ -174,21 +237,45 @@
 
         .screen-tablet {
             position: absolute;
-            left:65.3px;
+            left: 65.3px;
             bottom: 30px;
             width: 576px;
             height: 409.6px;
             overflow: hidden;
         }
+
+        @media (max-width: 768px) {
+            .uiux_tablet {
+            width: 450px;
+            height: auto;
+            }
+
+            .screen-tablet {
+            left: 32.65px;
+            bottom: 15px;
+            width: 388px;
+            height: auto;
+            }
+        }
         .figma-container {
             display: none;
             position: fixed;
-            top: 25%;
+            top: 5%;
             z-index: 2;
             justify-content: center;
             align-items: center;
             width: 100%;
+            aspect-ratio: 16 / 9;
             animation-duration: 1s;
+        }
+
+        @media (max-width: 768px) {
+            .figma-container {
+            width: 100%;
+            height: 20%;
+            aspect-ratio: 16 / 9;
+            top: 45%;
+            }
         }
 
 
@@ -197,13 +284,13 @@
                 transform: translateY(0);
             }
             to {
-                transform: translateY(-150%);
+                transform: translateY(-180%);
             }
         }
 
         @keyframes slide-up-center {
             from {
-                transform: translateY(150%);
+                transform: translateY(180%);
             }
             to {
                 transform: translateY(0);
@@ -212,7 +299,7 @@
 
         @keyframes slide-down-top {
             from {
-                transform: translateY(-150%);
+                transform: translateY(-180%);
             }
             to {
                 transform: translateY(0);
@@ -224,7 +311,7 @@
                 transform: translateY(0);
             }
             to {
-                transform: translateY(150%);
+                transform: translateY(180%);
             }
         }
     </style>
@@ -242,6 +329,8 @@
                 <a onclick="navigateTo('skills.html')">Skills</a>
                 <a class="sep">|</a>
                 <a href="project.html">Project</a>
+                <a class="sep">|</a>
+                <a onclick="navigateTo('more.html')">More</a>
             </div>
         </div>
     </nav>
@@ -251,7 +340,6 @@
             <img src="assets/webdev_icon.png" class="icon" alt="Web Dev" onclick="selectIcon(this)">
             <img src="assets/mobiledev_icon.png" class="icon" alt="Mobile Dev" onclick="selectIcon(this)">
             <img src="assets/ui_icon.png" class="icon" alt="UIUX Design" onclick="selectIcon(this)">
-            <img src="assets/Figma.png" class="icon" alt="Figma Portfolio" onclick="selectIcon(this)">
         </div>
         <div class="title">
             <h2>JUNIOR GENIUS HUB</h2>
@@ -372,34 +460,6 @@
                     isWebDevSelected = false;
                     document.querySelector('.title h2').textContent = 'YTODAY USER PANEL';
                 }
-            }
-            else if (icon.alt === 'Figma Portfolio') {
-                if (isFigmaSelected && icon.alt !== 'Figma Portfolio') {
-                    figmaContainer.style.animation = 'slide-down-center 1s forwards';
-                    setTimeout(() => {
-                        figmaContainer.style.display = 'none';
-                    }, 1000);
-                    isFigmaSelected = false;
-                }
-                else if (!isFigmaSelected) {
-                    if (isWebDevSelected) laptopContainer.style.animation = 'slide-up-top 1s forwards';
-                    if (isMobileDevSelected) mobileContainer.style.animation = 'slide-up-top 1s forwards';
-                    if (isTabletDevSelected) tabletContainer.style.animation = 'slide-up-top 1s forwards';
-
-                    figmaContainer.style.display = 'flex';
-                    figmaContainer.style.animation = 'slide-up-center 1s forwards';
-
-                    isWebDevSelected = false;
-                    isMobileDevSelected = false;
-                    isTabletDevSelected = false;
-                    isFigmaSelected = true;
-
-                    document.querySelector('.title h2').textContent = 'FIGMA PROTOTYPE';
-                }
-            }
-            else {
-                figmaContainer.style.display = 'none';
-                isFigmaSelected = false;
             }
             const overlay = document.getElementById('overlay');
         }

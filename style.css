@@ -201,7 +201,9 @@ body {
 /* -- Education -- */
 
 .education-card {
-    padding: 0px 10px 0px 10px;
+    display: grid;
+    place-items: center;
+    padding-block: 5rem;
 }
 
 .title {
@@ -222,7 +224,7 @@ body {
 
 .cards-container {
     display: flex;
-    justify-content: space-around; /* Distribute space between cards */
+    justify-content: space-around;
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 10px;
@@ -234,6 +236,7 @@ body {
     border: 1px solid #ccc; 
     border-radius: 1rem; 
     box-shadow: 0 0 5px #a8abb6; 
+    margin: 40px; /* Add margin to create space between cards */
 }
 
 .card img {
@@ -286,18 +289,20 @@ body {
 .card__article {
     position: relative;
     overflow: hidden;
-    padding: 35px;
+    padding: 60px;
 }
 
 .card__img {
-    width: 400px;
+    width: 100%;
+    max-width: 500px;
     border: 1px solid #ccc; 
     border-radius: 1rem; 
     box-shadow: 0 0 5px #a8abb6; 
 }
 
 .card__data {
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     background-color: #FFF;
     padding: 1.5rem 2rem;
     box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.15);
@@ -313,14 +318,14 @@ body {
 
 .card__description {
     display: block;
-    font-size: medium;
+    font-size: clamp(12px, 2vw, 16px); /* Adjust font size dynamically */
     margin-bottom: .25rem;
     color: #333;
-    font-weight:500;
+    font-weight: 500;
 }
 
 .card__title {
-    font-size: 24px;
+    font-size: clamp(20px, 3vw, 24px); /* Adjust font size dynamically */
     font-weight: 600;
     color: #437FC7;
     margin-bottom: .75rem;
@@ -328,9 +333,51 @@ body {
 
 .card__button {
     text-decoration: none;
-    font-size: medium;
+    font-size: clamp(14px, 2vw, 16px); /* Adjust font size dynamically */
     font-weight: 400;
     color: #333;
+}
+
+@media (max-width: 768px) {
+    .card__img {
+        max-width: 300px; /* Smaller max width for tablets */
+    }
+
+    .card__data {
+        max-width: 250px; /* Smaller max width for tablets */
+        padding: 1rem 1.5rem; /* Adjust padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .card__img {
+        max-width: 200px; /* Smaller max width for mobile */
+    }
+
+    .card__data {
+        max-width: 200px; /* Smaller max width for mobile */
+        padding: 0.75rem 1rem; /* Adjust padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .card__data {
+        width: 100%;
+        max-width: 200px;
+        padding: 1rem 1.5rem;
+    }
+
+    .card__description {
+        font-size: small;
+    }
+
+    .card__title {
+        font-size: 20px;
+    }
+
+    .card__button {
+        font-size: small;
+    }
 }
 
 .card__button:hover {
@@ -341,14 +388,17 @@ body {
     filter: brightness(80%);
 }
 
-.card__article:hover .card__data {
+.card__article:hover .card__data,
+.card__article:focus .card__data {
     animation: show-data 1s forwards;
     opacity: 1;
     transition: opacity .3s;
 }
 
-.card__article:hover {
+.card__article:hover,
+.card__article:focus {
     animation: remove-overflow 2s forwards;
+    outline: none; /* Remove default focus outline */
 }
 
 /* .card__article:not(:hover) {
@@ -504,7 +554,7 @@ img, video {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-    padding: 2px 100px;
+    padding: 2px 50px;
     position: relative;
 }
 
@@ -595,7 +645,40 @@ img, video {
     font-weight: bold;
 }
 
+.figma-prototype {
+    display: flex;
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically if needed */
+    margin-top: 20px;
+    /* Adjust spacing as required */
+    width: 100%;
+}
 
+.figma-prototype iframe {
+    width: 95%;
+    /* Adjust width as desired */
+    height: 600px;
+    /* Fixed height or auto */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    /* Optional: rounded corners */
+    margin-bottom: 30px;
+}
+
+.video-section {
+    text-align: center;
+    margin-top: 60px;
+    padding: 0 20px;
+}
+
+.video-section video {
+    max-width: 75%;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+}
 
 /* -- Responsive Media Queries -- */
 @media (max-width: 768px) {
@@ -682,6 +765,9 @@ img, video {
 
     .what_i_do .description p {
         font-size: 16px; /* Smaller font size for smaller screens */
+    }
+    .video-section {
+        margin-top: 150px;
     }
 }
 
