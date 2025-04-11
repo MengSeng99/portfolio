@@ -30,7 +30,7 @@
             .icon-container {
             position: fixed;
             top: auto;
-            bottom: 10px;
+            bottom: 30px;
             right: 50%;
             transform: translateX(50%);
             flex-direction: row;
@@ -187,10 +187,13 @@
             @media (max-width: 768px) {
                 top: 10%;
             }
+            @media (max-width: 430px) {
+                top: 10%;
+            }
         }
 
         .title h2 {
-            font-size: calc(5vw + 20px);
+            font-size: calc(5vw + 10px);
             color: #333;
             transition: color 0.3s ease;
         }
@@ -243,7 +246,6 @@
             height: 409.6px;
             overflow: hidden;
         }
-
         @media (max-width: 768px) {
             .uiux_tablet {
             width: 450px;
@@ -257,6 +259,21 @@
             height: auto;
             }
         }
+
+        @media (max-width: 480px) {
+            .uiux_tablet {
+            width: 300px;
+            height: auto;
+            }
+
+            .screen-tablet {
+            left: 20px;
+            bottom: 7px;
+            width: 260px;
+            height: auto;
+            }
+        }
+
         .figma-container {
             display: none;
             position: fixed;
@@ -284,13 +301,13 @@
                 transform: translateY(0);
             }
             to {
-                transform: translateY(-180%);
+                transform: translateY(-300%);
             }
         }
 
         @keyframes slide-up-center {
             from {
-                transform: translateY(180%);
+                transform: translateY(300%);
             }
             to {
                 transform: translateY(0);
@@ -299,7 +316,7 @@
 
         @keyframes slide-down-top {
             from {
-                transform: translateY(-180%);
+                transform: translateY(-300%);
             }
             to {
                 transform: translateY(0);
@@ -311,7 +328,7 @@
                 transform: translateY(0);
             }
             to {
-                transform: translateY(180%);
+                transform: translateY(300%);
             }
         }
     </style>

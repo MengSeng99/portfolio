@@ -20,6 +20,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
+    margin-bottom: 10px;
 }
 
 .left {
@@ -225,9 +226,6 @@ body {
 .cards-container {
     display: flex;
     justify-content: space-around;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 10px;
 }
 
 .card {
@@ -547,7 +545,7 @@ img, video {
 }
 
 .tech-skills {
-    padding: 50px 50px 50px 50px;
+    padding: 0px 50px 0px 50px;
 }
 
 .skill {
@@ -657,9 +655,9 @@ img, video {
 }
 
 .figma-prototype iframe {
-    width: 95%;
+    width: 90%;
     /* Adjust width as desired */
-    height: 600px;
+    height: 550px;
     /* Fixed height or auto */
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -669,7 +667,8 @@ img, video {
 
 .video-section {
     text-align: center;
-    margin-top: 60px;
+    margin-top: 80px;
+    margin-bottom: 40px;
     padding: 0 20px;
 }
 
